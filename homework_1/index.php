@@ -64,7 +64,9 @@ for ($i = 0; $i <= 10; $i++) {
         } elseif ( $i > 0 && $j == 0) {
             echo '<td>' . $i . '</td>';
         } else {
-            echo '<td>' . (($i * $j) % 2 ? '[' . $i * $j . ']':'(' . $i * $j . ')') . '</td>';
+            echo '<td>';
+            echo ($i * $j) % 2 ? '[' . $i * $j . ']':'(' . $i * $j . ')';
+            echo '</td>';
         }
     }
     echo '</tr>';
