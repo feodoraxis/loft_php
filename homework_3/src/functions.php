@@ -8,7 +8,7 @@ function task1($strings = [], $to_return = false)
     echo '<p>' . implode('</p></p>', $strings) . '</p>';
 }
 
-function task2(string $action = '+', int ... $args) //в РНР 8 можно поставить int|float, чтобы соответствовало заданию
+function task2(string $action = '+', int|float ... $args) //int|float только в РНР 8
 {
     $result = 0;
     $output = implode(' ' . $action . ' ', $args);
