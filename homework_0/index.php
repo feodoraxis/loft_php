@@ -1,7 +1,8 @@
 <?php
 require 'config.php';
 
-function show_something() {
+function show_something()
+{
     return 'something';
 }
 

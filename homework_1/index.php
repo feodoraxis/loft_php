@@ -10,7 +10,7 @@ echo "\"!|/'\"\\\n\n";
 echo (ALL_PICTURES - PENCIL_PICTURES - FELT_PEN_PICTURES) . " рисунков выполнено красками. \n\n";
 
 //3
-if ($age >= 18 && $age <=65) {
+if ($age >= 18 && $age <= 65) {
     echo "Вам ещё работать и работать \n\n";
 } elseif ($age > 65) {
     echo "Вам пора на пенсию";
@@ -40,12 +40,6 @@ switch ($day) {
 }
 
 //5
-$cars = [
-    'bmw' => $bmw,
-    'toyota' => $toyota,
-    'opel' => $opel,
-];
-
 foreach ($cars as $key => $car) {
     echo 'CAR ' . $key . "\n";
     echo $key . ' ' . $car['model'] . ' ' . $car['speed'] . ' ' . $car['doors'] . ' ' . $car['year'] . "\n";
@@ -65,7 +59,7 @@ for ($i = 0; $i <= 10; $i++) {
             echo '<td>' . $i . '</td>';
         } else {
             echo '<td>';
-            echo ($i * $j) % 2 ? '[' . $i * $j . ']':'(' . $i * $j . ')';
+            echo ($i * $j) % 2 ? '[' . $i * $j . ']' : '(' . $i * $j . ')';
             echo '</td>';
         }
     }

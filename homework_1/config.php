@@ -32,3 +32,9 @@ $opel = [
     'doors' => 3,
     'year' => "1991",
 ];
+
+$cars = [
+    'bmw' => $bmw,
+    'toyota' => $toyota,
+    'opel' => $opel,
+];
