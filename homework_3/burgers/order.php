@@ -62,7 +62,8 @@ $order_id = $pdo->lastInsertId();
 
 $query = $pdo->prepare("SELECT count(*) as len FROM `orders` WHERE `user_id` = :users_id");
 $query->execute([':users_id' => $user_id]);
-$length_orders = reset($query->fetchAll(PDO::FETCH_ASSOC));
+$length_orders = $query->fetchAll(PDO::FETCH_ASSOC);
+reset($length_orders);
 
 echo "Спасибо, ваш заказ будет доставлен по адресу: ул. " . $data['street'] . ", д." . $data['home'] . " корп." . $data['frame'] . " кв." . $data['apartment'] . " этаж." . $data['floor'] . '<br />';
 echo 'Номер вашего заказа: #' . $order_id . '<br />';
