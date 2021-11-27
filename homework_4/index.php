@@ -43,7 +43,7 @@ trait append_sales
                     $data[] = [
                         'sale_name' => 'GPS',
                         'total_price' => ceil($sale['time'] / 60) * 15,
-                        'for_show' => ' 15 мин/час * ' . ceil($sale['time'] / 60) . ' час ',
+                        'for_show' => ' 15 руб/час * ' . ceil($sale['time'] / 60) . ' час ',
                     ];
                     break;
                 case 'driver' :
@@ -73,11 +73,11 @@ abstract class tariffs implements car_share
     protected $sales_list;
     protected $tariff_name;
 
-    public function addSale(int $distance, int $time)
+    public function addSale(int $distance, int $time) //Время в минутах
     {
         $this->sales_list['defaults'][] = [
             'distance' => $distance,
-            'time' => ceil($time / 60), //минуты получаем
+            'time' => $time
         ];
     }
 
@@ -102,29 +102,35 @@ abstract class tariffs implements car_share
         return $data;
     }
 
-    final public function showPrice()
+    final public function showPrice(bool $return = false)
     {
         $result = $this->mathPrice();
         $total = 0;
 
-        echo "Тариф " . $this->tariff_name . '<br />';
+        $output = "Тариф " . $this->tariff_name . '<br />';
 
         foreach ($result['sales'] as $sale) {
             if ($sale['sale_name'] !== 'default') {
-                echo '- Доп. услуга ' . $sale['sale_name'] . '<br />';
+                $output .= '- Доп. услуга ' . $sale['sale_name'] . '<br />';
             }
         }
 
-        echo '<br>= ';
+        $output .= '<br>= ';
         foreach ($result['sales'] as $key => $sale) {
             $total += $sale['total_price'];
 
-            echo $sale['for_show'];
+            $output .= $sale['for_show'];
             if ($result['sales'][ $key+1 ]) {
-                echo ' + ';
+                $output .= ' + ';
             }
         }
-        echo ' = ' . $total;
+        $output .= ' = ' . $total;
+
+        if ($return === true) {
+            return $output;
+        }
+
+        echo $output;
 
     }
 }
@@ -176,4 +182,4 @@ $tariff_base->addSale(3, 40);
 $tariff_base->addSale(3, 40);
 $tariff_base->appendSale(1, 120);
 $tariff_base->appendSale(2);
-$tariff_base->showPrice();
+echo $tariff_base->showPrice(true);
