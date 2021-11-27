@@ -107,6 +107,15 @@ abstract class tariffs implements car_share
         $result = $this->mathPrice();
         $total = 0;
 
+        if ($result['result'] == 'error') {
+            if ($return === true) {
+                return $result['message'];
+            } else {
+                echo $result['message'];
+                exit;
+            }
+        }
+
         $output = "Тариф " . $this->tariff_name . '<br />';
 
         foreach ($result['sales'] as $sale) {
