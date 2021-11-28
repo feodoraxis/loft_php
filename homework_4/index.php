@@ -9,8 +9,7 @@ trait append_sales
 {
     public function appendSale(int $sale_code, int $time = 0) //Время в минутах
     {
-        switch($sale_code)
-        {
+        switch($sale_code) {
             case 1:
                 if ($time < 1) {
                     return "Ошибка: для этой услуги обязательно нужно указать время";
@@ -63,9 +62,6 @@ trait append_sales
 abstract class tariffs implements car_share
 {
     use append_sales;
-
-    protected $users_distance;
-    protected $users_time;
 
     protected $price_distance;
     protected $price_time;
@@ -140,7 +136,6 @@ abstract class tariffs implements car_share
         }
 
         echo $output;
-
     }
 }
 
@@ -181,14 +176,14 @@ class tariff_hour extends tariffs
             ];
         }
 
-        return array_merge($data, $this->mathAppendSale());
+        return array_merge($data['sales'], $this->mathAppendSale());
     }
 }
 
-$tariff_base = new tariff_base();
-$tariff_base->addSale(3, 40);
-$tariff_base->addSale(3, 40);
-$tariff_base->addSale(3, 40);
-$tariff_base->appendSale(1, 120);
-$tariff_base->appendSale(2);
-echo $tariff_base->showPrice(true);
+$tariff = new tariff_base();
+$tariff->addSale(3, 40);
+$tariff->addSale(3, 40);
+$tariff->addSale(3, 40);
+$tariff->appendSale(1, 120);
+$tariff->appendSale(2);
+echo $tariff->showPrice(true);
